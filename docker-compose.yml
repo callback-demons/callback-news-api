@@ -16,9 +16,9 @@ services:
         volumes:
             - db-data:/var/lib/postgresql/data/
         environment:
-            POSTGRES_DB: db_backend
-            POSTGRES_USER: db_user
-            POSTGRES_PASSWORD: db_password
+            POSTGRES_DB: callback_news
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: 890306
     api:
         build:
             context: ./app
