@@ -1,7 +1,11 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+from categories import views
 
-from .views import list_categories
+router = routers.DefaultRouter()
+router.register(r'categories', views.list_categories)
 
 urlpatterns = [
-    path('caegory/', api.categories.list_category.as_view(), name='api-post-details'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

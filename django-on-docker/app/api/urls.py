@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework import routers
-
-router = routers.DefaultRouter()
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('', include('categories.urls')),
 ]
