@@ -1,18 +1,20 @@
 """Categories views."""
 
 from django.shortcuts import render
+from rest_framework import viewsets  
+from .serializers import CategorySerializer
+from .models import Category
 
-#Models
-from api.categories.models import Category
 
-#Serializers
-from api.categories.serializers import CategorySerializer
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    A viewset that provides the standard actions for Categories Model.
+    """
 
-@api_views(['GET'])
-def list_categories(request):
-    """Return a list of all the categories."""
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    queryset = Category.objects.filter(delete__isnull=False)
+
+    
     
 
 
