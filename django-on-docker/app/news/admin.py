@@ -6,7 +6,6 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = (
         'title', 
         'author', 
-        'source', 
         'category', 
         'created',
         'published',
@@ -14,7 +13,7 @@ class NewsAdmin(admin.ModelAdmin):
         'user'
     )
 
-    ordering = ('created', 'source')
+    ordering = ('created', 'category')
     readonly_fields = ('created', 'deleted', 'updated')
     search_fields = ('title', 'source', 'category', 'author')
 
