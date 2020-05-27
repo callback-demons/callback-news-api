@@ -174,3 +174,4 @@ dmypy.json
 #Enviroments
 .env.dev
 env/
+.idea/**
