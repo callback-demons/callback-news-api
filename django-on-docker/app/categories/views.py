@@ -19,10 +19,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_news(request, id):
+    """
+    A function that gets news from a category id
+    """
     get_object_or_404(Category, id=id)
     queryset = News.objects.filter(category=id, deleted__isnull=True)
     serializer = NewsSerializer(queryset, many=True)
