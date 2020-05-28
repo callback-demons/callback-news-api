@@ -9,5 +9,6 @@ router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('account/register', views.CreateUserView.as_view())
+    path('account/register', views.CreateUserView.as_view()),
+    path('account/update', views.UpdateUserView.as_view()),
 ]
