@@ -1,20 +1,20 @@
 # Callback News API
 
-## About the backend demons team.
+Callback-News.com is an online technology newspaper that gets its news through external newspapers.
 
-:robot: ### Erik Sánchez- Scrapper Master.
 
-The supreme architect of the universe inside the news scrapper. 
+Callback-News.com has the news updated daily so you do not miss your dose of tech.
 
-:martial_arts_uniform: ### Iraida Barreto - Django developer ninja.
 
-Mastering the ancient python kung-fu technique to create a Django service hat transcends the time.
+The newspaper is managed by an admin panel in Python, gets the news automatically and has its frontend in NextJs (React).
 
-:sparkles: ### Gerardo Márquez - Deployment wizard.
+### 🚀 Links
 
-Infrastructure and devops superpowers combined to structure the app in defferents services.
+ * **Website:** https://api.callback-news.com/
+ * **Documentation:** https://www.notion.so/Callback-News-8f7835b5467b4ca89efe35607d9abad7
+ * **Mockup:** https://www.notion.so/670629e5706d445f8fe08c876ba33d63?v=7ff2443196594df298333cfdcb746970
 
-## How I deploy this project?
+### 🛠 Installation
 
 1. First, clone this repo with `git clone`.
 
@@ -42,4 +42,35 @@ if you want to set your own values for pgadmin, change them in the docker.compos
 8. Set values and the go to [localhost/8080/admin](localhost/8000/admin) to access.
 9. To sing in the pgadmin IDE go to [localhost/8000/admin](localhost/8000/admin) and join with your credentials..
 
+### 🖥 Execution
 
+**Development Environment**
+```
+```
+
+>This project runs on **http://localhost:8080**
+**Production Environment**
+
+```
+```
+
+
+### 🛠️ Technologies
+
+  * Python
+  * Django
+  * PostgreSQL
+
+### ✒️ Authors
+
+* **Erik Sanchez** - [eriksape](https://github.com/eriksape)
+* **David Behar** - [behagoras](https://github.com/behagoras)
+* **Iraida Mercedes** - [iraida07](https://github.com/iraida07)
+* **William Velazquez** - [WilliamVelazquez](https://github.com/WilliamVelazquez)
+* **Gerardo Marquez** - [GerardoMarquezC](https://github.com/GerardoMarquezC)
+
+If you want to know about the insights [click here!](https://github.com/callback-demons/callback-news-api/pulse/monthly)
+
+### 🎁 Contribute
+
+Feel free to contribute to the project!
