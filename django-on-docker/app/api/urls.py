@@ -23,4 +23,5 @@ urlpatterns = [
     url('api/auth', views.obtain_auth_token),
     path('', include('categories.urls')),
     path('', include('news.urls')),
+    path('', include('users.urls')),
 ]
