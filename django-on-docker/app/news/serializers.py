@@ -14,13 +14,16 @@ class NewsSerializer(serializers.ModelSerializer):
     """Set the fields to be use in the view file"""
     class Meta:
         model = News
-        fields =    ('slug',
-                    'title', 
-                    'author', 
-                    'description', 
-                    'created',
-                    'date_posted',
-                    'likes',
-                    'media',
-                    'source',
-                    'category')
+        fields = (
+            'id',
+            'slug',
+            'title',
+            'author',
+            'description',
+            'created',
+            'date_posted',
+            'likes',
+            'media',
+            'source',
+            'category'
+        )
