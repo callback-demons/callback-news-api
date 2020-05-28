@@ -31,7 +31,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     """
         Serializer for update an User model
-        """
+    """
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'country', 'birth_date')
