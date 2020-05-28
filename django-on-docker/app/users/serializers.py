@@ -3,12 +3,18 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Default user Serielizer
+    """
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'country', 'birth_date')
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for create an User model
+    """
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'password', 'country', 'birth_date')
@@ -23,6 +29,9 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class UpdateUserSerializer(serializers.ModelSerializer):
+    """
+        Serializer for update an User model
+        """
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'country', 'birth_date')
