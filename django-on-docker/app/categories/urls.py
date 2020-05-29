@@ -9,5 +9,5 @@ router.register(r'categories', views.CategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("categories/<int:id>/news/", views.get_news, name="details"),
+    path("categories/<int:id>/news/", views.get_news, name="get_news"),
 ]
