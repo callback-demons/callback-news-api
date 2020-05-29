@@ -7,11 +7,11 @@ services:
     volumes:
         - minio-data:/export
     ports:
-        - 9000:80
+        - 9000:9000
     environment:
         MINIO_ACCESS_KEY: access_key
         MINIO_SECRET_KEY: secret_key
-    command: server /export --address=:80
+    command: server /export --address=:9000
 
   django:
     build: ./app
