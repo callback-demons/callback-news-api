@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from google.oauth2 import service_account
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -28,7 +28,7 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Apps
-INSTALLED_APPS= [
+INSTALLED_APPS = [
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,15 +37,16 @@ INSTALLED_APPS= [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'users.apps.UsersAppConfig', 
-    'news.apps.NewsAppConfig', 
+    'users.apps.UsersAppConfig',
+    'news.apps.NewsAppConfig',
     'categories.apps.CategoriesAppConfig',
-    'comments.apps.CommentsAppConfig',    
-    'media.apps.MediaAppConfig',    
+    'comments.apps.CommentsAppConfig',
+    'media.apps.MediaAppConfig',
     'sources.apps.SourcesAppConfig',
 
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'minio_storage',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
+
 # User and authentication
 AUTH_USER_MODEL = "users.User"
 
@@ -94,7 +96,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -114,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -128,8 +128,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-#Users and authentication
-#AUTH_USER_MODEL = 'users.User'
+# Users and authentication
+# AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -138,8 +138,17 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES':(
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+# Storage
+GS_CREDENTIALS_FILE_LOCATION = os.environ.get('GS_CREDENTIALS_FILE_LOCATION')
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = os.environ.get('BUCKET_NAME')
+GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(GS_CREDENTIALS_FILE_LOCATION)
+GS_AUTO_CREATE_BUCKET = False
+publicRead = True

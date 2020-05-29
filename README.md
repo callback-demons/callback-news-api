@@ -17,30 +17,47 @@ The newspaper is managed by an admin panel in Python, gets the news automaticall
 ### 🛠 Installation
 
 1. First, clone this repo with `git clone`.
-
 2. Create enviroment file .env.dev hat satifies the emty values below:
    
 ```bash
 DEBUG=1
 SECRET_KEY=foo
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-
 SQL_ENGINE=django.db.backends.postgresql
 SQL_DATABASE=callback_news
-SQL_USER=<setuser>
-SQL_PASSWORD=<setpasword>
+SQL_USER=admin
+SQL_PASSWORD=890306
 SQL_HOST=postgres
 SQL_PORT=5432
+DJANGO_SETTINGS_MODULE=api.settings.dev
 ```
-if you want to set your own values for pgadmin, change them in the docker.compose.yml, in the pgadmin section.
+- If you want to set your own values for pgadmin, change them in the docker.compose.yml, in the pgadmin section.
 
-3. Build the container with `docker-compose build` (Make sure you have docker and docker compose installed in you machine)
-4. Once docker image is installed, turn it on with `docker-compose up`.
-5. Run migration of the models set with `docker-compose exec django python manage.py makemigrations`.
-6. Then run `docker-compose exec django python manage.py migrate` to complete the migration process.
-7. Set you user in django administration IDE with `docker-compose exec django python manage.py createsuperuser`
-8. Set values and the go to [localhost/8080/admin](localhost/8000/admin) to access.
-9. To sing in the pgadmin IDE go to [localhost/8000/admin](localhost/8000/admin) and join with your credentials..
+3. To set minio server add `127.0.0.1       minio` to your /etc/hosts file or equivalent in your OS.
+4. Enter to http://minio:9000
+- Credentials are: 
+    - MINIO_ACCESS_KEY: access_key
+    - MINIO_SECRET_KEY: secret_key
+    
+5. Create bucket in Minio and name it `bucket`
+
+<img alt="create_bucket_in_minio" src="https://storage.googleapis.com/cbn-public/minio_create_bucket.png" height="300">
+
+6. Click on edit policy from the bucket.
+
+![Edit bucket's policies in Minio](https://storage.googleapis.com/cbn-public/minio_edit_policies.png)
+
+7.then set prefix to `*` and set to select `read and write`
+
+![Set bucket's policies in Minio](https://storage.googleapis.com/cbn-public/minio_policies.png)
+
+8. Build the container with `docker-compose build` (Make sure you have docker and docker compose installed in you machine)
+9. Once docker image is installed, turn it on with `docker-compose up`.
+10. Run migration of the models set with `docker-compose exec django python manage.py makemigrations`.
+11. Then run `docker-compose exec django python manage.py migrate` to complete the migration process.
+12. Set you user in django administration IDE with `docker-compose exec django python manage.py createsuperuser`
+13. Set values and the go to [localhost/8080/admin](localhost/8000/admin) to access.
+14. To sing in the pgadmin IDE go to [localhost/8000/admin](localhost/8000/admin) and join with your credentials..
 
 ### 🖥 Execution
 
