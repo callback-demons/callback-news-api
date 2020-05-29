@@ -15,12 +15,10 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     A viewset that provides the standard actions for Categories Model.
     """
-    permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_news(request, id):
     """
     A function that gets news from a category id
