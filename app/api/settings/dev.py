@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -28,7 +27,7 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Apps
-INSTALLED_APPS= [
+INSTALLED_APPS = [
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,15 +36,16 @@ INSTALLED_APPS= [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'users.apps.UsersAppConfig', 
-    'news.apps.NewsAppConfig', 
+    'users.apps.UsersAppConfig',
+    'news.apps.NewsAppConfig',
     'categories.apps.CategoriesAppConfig',
-    'comments.apps.CommentsAppConfig',    
-    'media.apps.MediaAppConfig',    
+    'comments.apps.CommentsAppConfig',
+    'media.apps.MediaAppConfig',
     'sources.apps.SourcesAppConfig',
 
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'minio_storage',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
+
 # User and authentication
 AUTH_USER_MODEL = "users.User"
 
@@ -94,7 +95,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -114,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -128,8 +127,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-#Users and authentication
-#AUTH_USER_MODEL = 'users.User'
+# Users and authentication
+# AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -138,8 +137,19 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES':(
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+# Storage
+DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
+MINIO_STORAGE_ENDPOINT = "minio:9000"
+MINIO_STORAGE_ACCESS_KEY = "access_key"
+MINIO_STORAGE_SECRET_KEY = "secret_key"
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_BUCKET_NAME = "bucket"
+MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = False
+MINIO_STORAGE_STATIC_BUCKET_NAME = 'bucket'
+MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
