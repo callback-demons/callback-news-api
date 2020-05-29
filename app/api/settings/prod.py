@@ -144,10 +144,11 @@ REST_FRAMEWORK = {
     ),
 }
 # Storage
+GS_CREDENTIALS_FILE_LOCATION = os.environ.get('GS_CREDENTIALS_FILE_LOCATION')
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'cbn-public'
-GS_PROJECT_ID = 'callback-demons'
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file('/usr/src/app/callback-demons.json')
+GS_BUCKET_NAME = os.environ.get('BUCKET_NAME')
+GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(GS_CREDENTIALS_FILE_LOCATION)
 GS_AUTO_CREATE_BUCKET = False
 publicRead = True
