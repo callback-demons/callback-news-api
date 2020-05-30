@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'minio_storage',
 ]
 
 MIDDLEWARE = [
