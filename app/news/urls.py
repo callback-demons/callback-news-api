@@ -9,4 +9,5 @@ router.register(r'news', views.NewsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('news/<int:news_id>/like', views.like, name="like")
 ]
