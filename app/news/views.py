@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from rest_framework import viewsets  
-from .serializers import NewsSerializer
+from .serializers import NewsSerializer, NewsPagination
 from .models import News
 
 
@@ -13,6 +13,7 @@ class NewsViewSet(viewsets.ModelViewSet):
 
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    pagination_class = NewsPagination
 
     
     
