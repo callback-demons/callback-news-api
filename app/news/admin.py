@@ -5,9 +5,9 @@ from .models import News
 class NewsAdmin(admin.ModelAdmin):
     list_display = (
         'title', 
-        'author', 
+        'source', 
         'category', 
-        'created',
+        'date_posted',
         'published',
         'deleted',
         'user'

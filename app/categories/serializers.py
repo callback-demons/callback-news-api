@@ -8,4 +8,4 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     """Set the fields to be use in the view file"""
     class Meta:
         model = Category
-        fields = ('id', 'name', 'color', 'image', 'deleted')
+        fields = ('id', 'name', 'color', 'picture')
