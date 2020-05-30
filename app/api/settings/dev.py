@@ -141,6 +141,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+    
 }
 # Storage
 DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"

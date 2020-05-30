@@ -12,14 +12,14 @@ class Source(APImodels):
     Provides the information of the sites that are used to scrapping.
     """
 
-    name = models.TextField()
-    url = models.TextField()
+    name = models.CharField('source name', max_length=200)
+    url = models.CharField('source url', max_length=2048)
     logo = models.ImageField(
         'media logo',
         upload_to='users/pictures/',
         blank=True,
     )
-    disclaimer = models.TextField( blank=True)  
+    disclaimer = models.TextField(blank=True)  
 
     def __str__(self):
         return self.name  
