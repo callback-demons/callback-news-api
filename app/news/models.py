@@ -1,10 +1,19 @@
 """News model"""
 
-#Django
+# Django
 from django.db import models
 
-#Utilities
+# Utilities
 from api.utils.models import APImodels
+
+
+class LikeUsers(models.Model):
+    """
+    Structure for like logic model
+    """
+    user_id = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    news_id = models.ForeignKey('news.News', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
 
 class News(APImodels):
     """News Model.
@@ -19,29 +28,31 @@ class News(APImodels):
     content = models.TextField()
     date_posted = models.DateField()
     likes = models.PositiveIntegerField(default=0)
-    updated = models.DateTimeField(null=True, auto_now_add=True,)
-    published = models.DateTimeField(null=True, blank=True,)
+    updated = models.DateTimeField(null=True, auto_now_add=True, )
+    published = models.DateTimeField(null=True, blank=True, )
 
-    #Foreing keys
-    user =  models.ForeignKey('users.User',
-            null=True,
-            on_delete=models.CASCADE,   
-            )
+    # Foreing keys
+    user = models.ForeignKey('users.User',
+                             null=True,
+                             on_delete=models.CASCADE,
+                             )
 
     media = models.ManyToManyField('media.Media',
-            null=True,
-            blank=True,
-            related_name='news_media',
-            )
+                                   null=True,
+                                   blank=True,
+                                   related_name='news_media',
+                                   )
 
-    category =  models.ForeignKey('categories.Category',
-                null=True,
-                on_delete=models.CASCADE,
-                )
+    category = models.ForeignKey('categories.Category',
+                                 null=True,
+                                 on_delete=models.CASCADE,
+                                 )
 
-    source =    models.ForeignKey('sources.Source', 
-                null=True,
-                on_delete=models.CASCADE)
+    source = models.ForeignKey('sources.Source',
+                               null=True,
+                               on_delete=models.CASCADE)
+
+    likes_users = models.ManyToManyField('users.User', related_name='likes', through=LikeUsers)
 
     def __str__(self):
         return self.title
