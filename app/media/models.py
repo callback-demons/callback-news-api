@@ -1,10 +1,11 @@
 """Media model"""
 
-#Django
+# Django
 from django.db import models
 
-#Utilities
+# Utilities
 from api.utils.models import APImodels
+
 
 class Media(APImodels):
     """Media Model.
@@ -29,17 +30,18 @@ class Media(APImodels):
     title = models.CharField(max_length=500)
 
     type = models.CharField(max_length=50,
-                            choices = TYPE_OF_CONTENT,
-                            default = image,
-    )
+                            choices=TYPE_OF_CONTENT,
+                            default=image,
+                            )
 
     url = models.CharField(null=True, max_length=2048)
 
     news_related = models.ForeignKey('news.News',
-            related_name='media_news',
-            null=True,
-            on_delete=models.CASCADE,
-            )
+                                     related_name='media_news',
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE,
+                                     )
 
     def __str__(self):
         return self.title
