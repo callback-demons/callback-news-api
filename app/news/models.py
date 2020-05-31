@@ -25,7 +25,7 @@ class News(APImodels):
     title = models.CharField('news title', max_length=500)
     author = models.CharField('author name(s)', max_length=500)
     description = models.TextField(null=True, blank=True)
-    slug = models.SlugField(max_length=500, unique=True, blank=True)
+    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     content = models.TextField()
     date_posted = models.DateField()
     likes = models.PositiveIntegerField(default=0)

@@ -24,13 +24,12 @@ class User(APImodels, AbstractUser):
         unique = True,
         validators=[email_validator],
         error_messages={
-            'unique': 'Ops!, This email already exist.'
+            'unique': 'Ops!, This email already exists.'
         }
     )
 
-    birth_date = models.DateField(blank=True, null=True)
-    country = models.TextField(blank=True, null=True)
-    username = models.CharField(max_length=100)
+    birth_date = models.DateField( 'birth day', blank=True, null=True)
+    country = models.TextField('Country', blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
@@ -67,7 +66,4 @@ class User(APImodels, AbstractUser):
     def get_short_name(self):
         """Return username."""
         return self.username
-
-
-
 
