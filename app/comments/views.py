@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from news.models import News
 from .serializers import CommentSerializer
@@ -21,7 +21,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['POST', 'GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def comments(request, news_id):
     """
     A function that get or post a comments in news
