@@ -11,5 +11,6 @@ router.register(r'news-date', views.NewsbyDateViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('news/<int:news_id>/like', views.like, name="like")
+    path('news/<int:news_id>/like', views.like, name="like"),
+    path('news-publish', views.publish, name="publish")
 ]
