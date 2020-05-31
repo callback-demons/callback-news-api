@@ -6,6 +6,10 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import User
 from .serializers import CreateUserSerializer, UpdateUserSerializer, UserSerializer
 
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+
 
 class CreateUserView(CreateAPIView):
     """
@@ -14,6 +18,9 @@ class CreateUserView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
     permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
 
 
 class UpdateUserView(UpdateAPIView):
@@ -35,3 +42,9 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        return Response({'token': token.key, 'id': token.user_id})
