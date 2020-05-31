@@ -6,6 +6,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'news', views.NewsViewSet)
+router.register(r'news-popular', views.NewsPopularViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
