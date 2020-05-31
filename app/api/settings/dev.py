@@ -46,13 +46,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'minio_storage',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -157,4 +155,8 @@ MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = False
 MINIO_STORAGE_STATIC_BUCKET_NAME = os.environ.get('BUCKET_NAME')
 MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
 
-CORS_ORIGIN_ALLOW_ALL = True
+#Mailing
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '6f30cda367f649'
+EMAIL_HOST_PASSWORD = '574fbd41aa4f6a'
+EMAIL_PORT = '2525'
