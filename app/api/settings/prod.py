@@ -154,3 +154,10 @@ GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(GS_CREDENTIALS_FILE_LOCATION)
 GS_AUTO_CREATE_BUCKET = False
 publicRead = True
+
+#mailing
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')

@@ -30,6 +30,14 @@ SQL_PASSWORD=890306
 SQL_HOST=postgres
 SQL_PORT=5432
 DJANGO_SETTINGS_MODULE=api.settings.dev
+BUCKET_NAME=bucket
+GS_CREDENTIALS_FILE_LOCATION=
+GS_PROJECT_ID=
+EMAIL_HOST=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+EMAIL_PORT=
+EMAIL_USE_TLS=
 ```
 - If you want to set your own values for pgadmin, change them in the docker.compose.yml, in the pgadmin section.
 
