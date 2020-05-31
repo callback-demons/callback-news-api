@@ -2,6 +2,7 @@
 
 # Django
 from django.db import models
+from django.template.defaultfilters import slugify
 
 # Utilities
 from api.utils.models import APImodels
@@ -17,19 +18,24 @@ class LikeUsers(models.Model):
 
 class News(APImodels):
     """News Model.
-    
+
     Define the structure for the news that are feeded by the scrapper.
     """
 
     title = models.CharField('news title', max_length=500)
     author = models.CharField('author name(s)', max_length=500)
     description = models.TextField(null=True, blank=True)
-    slug = models.CharField(null=True, max_length=500)
+    slug = models.SlugField(max_length=500, unique=True, blank=True)
     content = models.TextField()
     date_posted = models.DateField()
     likes = models.PositiveIntegerField(default=0)
     updated = models.DateTimeField(null=True, auto_now_add=True, )
     published = models.DateTimeField(null=True, blank=True, )
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(News, self).save(*args, **kwargs)
+
 
     # Foreing keys
     user = models.ForeignKey('users.User',
@@ -38,7 +44,6 @@ class News(APImodels):
                              )
 
     media = models.ManyToManyField('media.Media',
-                                   null=True,
                                    blank=True,
                                    related_name='news_media',
                                    )
