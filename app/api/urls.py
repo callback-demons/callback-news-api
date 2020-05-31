@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from rest_framework.authtoken import views
+from users.views import CustomObtainAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('api/auth', views.obtain_auth_token),
+    url('api/auth', CustomObtainAuthToken.as_view()),
     path('', include('categories.urls')),
     path('', include('news.urls')),
     path('', include('users.urls')),
