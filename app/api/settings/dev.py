@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'minio_storage',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -154,3 +156,5 @@ MINIO_STORAGE_MEDIA_BUCKET_NAME = os.environ.get('BUCKET_NAME')
 MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = False
 MINIO_STORAGE_STATIC_BUCKET_NAME = os.environ.get('BUCKET_NAME')
 MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
+
+CORS_ORIGIN_ALLOW_ALL = True
