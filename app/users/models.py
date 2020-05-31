@@ -28,12 +28,12 @@ class User(APImodels, AbstractUser):
         }
     )
 
-    birth_date = models.DateField()
-    country = models.TextField()
+    birth_date = models.DateField(blank=True, null=True)
+    country = models.TextField(blank=True, null=True)
     username = models.CharField(max_length=100)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birth_date', 'country']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
     is_reader = models.BooleanField(
         'reader',

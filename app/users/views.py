@@ -33,6 +33,5 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     A viewset that provides the standard actions for User Model.
     """
-    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer

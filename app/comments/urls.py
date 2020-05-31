@@ -8,6 +8,6 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("news/<int:id>/comments/", views.comments, name="comments"),
+    path("news/<int:news_id>/comments/", views.comments, name="comments"),
 
 ]
