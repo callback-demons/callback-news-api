@@ -57,7 +57,7 @@ class News(APImodels):
                                null=True,
                                on_delete=models.CASCADE)
 
-    likes = models.ManyToManyField('users.User', related_name='likes', through=Likes)
+    likes = models.ManyToManyField('users.User', related_name='likes', through=Likes, null=True, blank=True)
 
     def __str__(self):
         return self.title
