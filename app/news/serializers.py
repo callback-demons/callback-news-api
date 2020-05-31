@@ -3,7 +3,7 @@
 from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
 
-from .models import News
+from .models import News, Likes
 from categories.models import Category
 from sources.models import Source
 from media.models import Media
@@ -50,6 +50,7 @@ class NewsSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     source = SourceSerializer(read_only=True)
     media = MediaSerializer(many=True)
+    likes = serializers.SerializerMethodField()
 
     class Meta:
         model = News
@@ -65,6 +66,20 @@ class NewsSerializer(serializers.ModelSerializer):
                   'media',
                   'source',
                   'category')
+
+    def get_likes(self, instance):
+        request_object = self.context['request']
+        count = Likes.objects.filter(news=instance).count()
+
+        if request_object.user.is_anonymous:
+            liked = False
+        else:
+            liked = Likes.objects.filter(news=instance, user=request_object.user).count() > 0
+
+        return {
+            'count': count,
+            'liked': liked
+        }
 
 
 class NewsPagination(PageNumberPagination):

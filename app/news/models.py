@@ -8,13 +8,14 @@ from django.template.defaultfilters import slugify
 from api.utils.models import APImodels
 
 
-class LikeUsers(models.Model):
+class Likes(models.Model):
     """
     Structure for like logic model
     """
-    user_id = models.ForeignKey('users.User', on_delete=models.CASCADE)
-    news_id = models.ForeignKey('news.News', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='user')
+    news = models.ForeignKey('news.News', on_delete=models.CASCADE, related_name='news')
     created = models.DateTimeField(auto_now_add=True)
+
 
 class News(APImodels):
     """News Model.
@@ -28,7 +29,6 @@ class News(APImodels):
     slug = models.SlugField(max_length=500, unique=True, blank=True)
     content = models.TextField()
     date_posted = models.DateField()
-    likes = models.PositiveIntegerField(default=0)
     updated = models.DateTimeField(null=True, auto_now_add=True, )
     published = models.DateTimeField(null=True, blank=True, )
 
@@ -57,7 +57,7 @@ class News(APImodels):
                                null=True,
                                on_delete=models.CASCADE)
 
-    likes_users = models.ManyToManyField('users.User', related_name='likes', through=LikeUsers)
+    likes = models.ManyToManyField('users.User', related_name='likes', through=Likes)
 
     def __str__(self):
         return self.title

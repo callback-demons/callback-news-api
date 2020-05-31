@@ -1,4 +1,5 @@
 """News views."""
+from django.db.models import Count
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
@@ -6,7 +7,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import NewsSerializer, NewsPagination
-from .models import News, LikeUsers
+from .models import News, Likes
 
 
 class NewsViewSet(viewsets.ModelViewSet):
@@ -38,14 +39,20 @@ def like(request, news_id):
     """
     news = get_object_or_404(News, id=news_id)
     try:
-        like_user = LikeUsers.objects.get(user_id=request.user, news_id=news)
-        like_user.delete()
-        news.likes -= 1
-        news.save()
+        likes = Likes.objects.get(user=request.user, news=news)
+        likes.delete()
         return JsonResponse({"message": "removed like to news"})
-    except LikeUsers.DoesNotExist:
-        like_user = LikeUsers(user_id=request.user, news_id=news)
-        like_user.save()
-        news.likes += 1
-        news.save()
+    except Likes.DoesNotExist:
+        likes = Likes(user=request.user, news=news)
+        likes.save()
         return JsonResponse({"message": "added like to news"})
+
+
+class NewsPopularViewSet(viewsets.ModelViewSet):
+    """
+    A viewset that provides the standard actions for News Model.
+    """
+    top_popular = query = Likes.objects.values('news_id').annotate(likes=Count('news_id')).order_by('-likes')[:10]
+    queryset = News.objects.filter(id__in=top_popular.values_list('news_id'))
+    serializer_class = NewsSerializer
+
