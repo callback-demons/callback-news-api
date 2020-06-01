@@ -50,7 +50,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         sender_email = "Callback News Team <team@callback-news.com>"
         receiver_email = user.email
         message = MIMEMultipart("related")
-        message["Subject"] = "CID image test"
+        message["Subject"] = "Welcome to Callback News"
         message["From"] = sender_email
         message["To"] = receiver_email
 
