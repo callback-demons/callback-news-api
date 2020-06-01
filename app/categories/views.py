@@ -25,5 +25,5 @@ def get_news(request, id):
     """
     get_object_or_404(Category, id=id)
     queryset = News.objects.filter(category=id, deleted__isnull=True)
-    serializer = NewsSerializer(queryset, many=True)
+    serializer = NewsSerializer(queryset, many=True, context={'request': request})
     return JsonResponse(serializer.data, safe=False)
