@@ -11,9 +11,10 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     """Set the fields to be use in the view file"""
     user = serializers.SerializerMethodField()
 
+
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'user_id', 'news_id', 'deleted', 'user', 'created')
+        fields = ('id', 'content', 'user_id', 'news_id', 'deleted', 'user', 'create')
 
     def get_user(self, instance):
         queryset = User.objects.get(id=instance.user_id)
