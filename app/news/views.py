@@ -78,6 +78,9 @@ def publish(request):
     news.date_posted = request.data['date_posted']
     news.category_id = request.data['category_id']
     news.source_id = request.data['source_id']
+    news.author = request.data['author']
+    news.description = request.data['description']
+    news.content = request.data['content']
     if 'published' in request.data:
         news.published = datetime.now()
     news.save()
