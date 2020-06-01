@@ -65,7 +65,8 @@ class NewsSerializer(serializers.ModelSerializer):
                   'content',
                   'media',
                   'source',
-                  'category')
+                  'category',
+                  'published')
 
     def get_likes(self, instance):
         request_object = self.context['request']

@@ -56,3 +56,10 @@ class NewsPopularViewSet(viewsets.ModelViewSet):
     queryset = News.objects.filter(id__in=top_popular.values_list('news_id'))
     serializer_class = NewsSerializer
 
+class NewsbyDateViewSet(viewsets.ModelViewSet):
+    """
+    A viewset that provides news sorted by published date.
+    """
+    queryset = News.objects.order_by('published')
+    serializer_class = NewsSerializer
+

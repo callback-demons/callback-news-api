@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date')
+        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date',)
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date')
+        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -83,7 +83,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date')
+        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'country', 'birth_date', 'password')
         extra_kwargs = {}
 
         @staticmethod
