@@ -24,5 +24,8 @@ class Comment(APImodels):
             blank=True
             )
 
+    def __str__(self):
+        return self.content
+
     class Meta(object):
         verbose_name_plural = 'Comments'    

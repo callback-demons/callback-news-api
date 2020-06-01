@@ -60,6 +60,6 @@ class NewsbyDateViewSet(viewsets.ModelViewSet):
     """
     A viewset that provides news sorted by published date.
     """
-    queryset = News.objects.order_by('published')
+    queryset = News.objects.order_by('published')[:10]
     serializer_class = NewsSerializer
 
