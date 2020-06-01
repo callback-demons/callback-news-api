@@ -14,7 +14,7 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'user_id', 'news_id', 'deleted', 'user', 'create')
+        fields = ('id', 'content', 'user_id', 'news_id', 'deleted', 'user', 'created')
 
     def get_user(self, instance):
         queryset = User.objects.get(id=instance.user_id)
