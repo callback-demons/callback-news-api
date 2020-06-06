@@ -10,7 +10,7 @@ from .models import Comment
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     """Set the fields to be use in the view file"""
     user = serializers.SerializerMethodField()
-
+    created = serializers.DateTimeField(read_only=True, format="%d-%m-%Y")
 
     class Meta:
         model = Comment
